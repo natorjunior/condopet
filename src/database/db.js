@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
 const dbPath = process.env.DATABASE_URL || './database.sqlite';
 
@@ -10,6 +11,12 @@ class Database {
 
   async connect() {
     return new Promise((resolve, reject) => {
+      // Garantir que o diretório existe
+      const dbDir = path.dirname(dbPath);
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+      
       this.db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
           reject(err);
