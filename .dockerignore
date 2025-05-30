@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+docs/
+test-*.ps1
+.env
+database.sqlite
+uploads/*
+data/*
+*.md
+.vscode
+.DS_Store
+Thumbs.db
